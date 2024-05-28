@@ -28,10 +28,6 @@ jobs:
         if: github.event.action != 'closed'
         run: ls -la ./build/
 
-      - name: Copy for test
-        run:
-          cp -rv ./build/* /root
-
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
