@@ -18,20 +18,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Install and Build Project
-      #   if: github.event.action != 'closed' # You might want to skip the build if the PR has been closed
-      #   run: |
-      #     npm install
-      #     npm run build
+      - name: Install and Build Project
+        if: github.event.action != 'closed' # You might want to skip the build if the PR has been closed
+        run: |
+          npm install
+          npm run build
         
-      # - name: Verify Build Output
-      #   if: github.event.action != 'closed'
-      #   run: ls -la ./build/static/
+      - name: Verify Build Output
+        if: github.event.action != 'closed'
+        run: ls -la ./build/
+
+      - name: Copy for test
+        run:
+          cp -rv ./build/* /root
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: .
+          source-dir: ./build
           preview-branch: main
-          umbrella-dir: pr-preview
           action: auto
