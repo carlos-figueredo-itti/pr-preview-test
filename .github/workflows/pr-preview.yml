@@ -1,0 +1,25 @@
+name: PR Preview
+on:
+  pull_request:
+    types: 
+      - opened
+      - synchronize
+      - reopened
+      - closed
+permissions:
+  contents: write
+jobs:
+  pr-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy PR Preview
+        uses: rossjrw/pr-preview-action@v1.4.7
+        with:
+          source-dir: ./build/
+            
