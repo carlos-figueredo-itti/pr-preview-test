@@ -22,4 +22,5 @@ jobs:
         uses: rossjrw/pr-preview-action@v1.4.7
         with:
           source-dir: ./build/
+          token: ${{ secrets.TOKEN_GITHUB }}
             
