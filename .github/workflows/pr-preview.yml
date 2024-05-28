@@ -9,6 +9,7 @@ on:
 concurrency: preview-${{ github.ref }}
 permissions:
   contents: write
+  id-token: write
 jobs:
   pr-preview:
     runs-on: ubuntu-20.04
@@ -27,4 +28,4 @@ jobs:
         with:
           source-dir: ./build/static/ 
           token: ${{ secrets.TOKEN_GITHUB }}
-            
+          
