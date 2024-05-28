@@ -28,6 +28,12 @@ jobs:
         if: github.event.action != 'closed'
         run: ls -la ./build/
 
+      - name: Permissions for deploy
+        run: |
+          sudo chmod 755 ./build
+          sudo chmod 644 ./build/*
+          sudo chown -R $USER:$USER ./build
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
